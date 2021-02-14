@@ -6,7 +6,22 @@ import (
 	"text/template"
 )
 
-func generateCode(genArgs *GeneratorArgs, out io.Writer) error {
+type options struct {
+	OutputPath string
+	Interface  string
+	Typed      string
+	Package    string
+	Imports    []string
+	Structs    []singleStruct
+	AllArgs    []string
+}
+
+type singleStruct struct {
+	Type  string
+	Alias string
+}
+
+func generateCode(genArgs *options, out io.Writer) error {
 	tmpl := template.Must(template.New("gen").
 		Funcs(template.FuncMap{
 			"join":      strings.Join,

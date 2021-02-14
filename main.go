@@ -15,25 +15,6 @@ import (
 
 const moduleName = "typedyaml"
 
-const (
-	ExitCodeError = 1
-)
-
-type Struct struct {
-	Type  string
-	Alias string
-}
-
-type GeneratorArgs struct {
-	OutputPath string
-	Interface  string
-	Typed      string
-	Package    string
-	Imports    []string
-	Structs    []Struct
-	AllArgs    []string
-}
-
 func main() {
 	args, err := parseArguments()
 	if err != nil {
@@ -62,11 +43,11 @@ func main() {
 	}
 }
 
-func parseStructs(args []string) []Struct {
-	structs := make([]Struct, 0, len(args))
+func parseStructs(args []string) []singleStruct {
+	structs := make([]singleStruct, 0, len(args))
 
 	for _, arg := range args {
-		var s Struct
+		var s singleStruct
 		if idx := strings.Index(arg, "="); idx == -1 {
 			s.Alias = arg
 			s.Type = arg
@@ -81,8 +62,8 @@ func parseStructs(args []string) []Struct {
 	return structs
 }
 
-func parseArguments() (*GeneratorArgs, error) {
-	ga := GeneratorArgs{}
+func parseArguments() (*options, error) {
+	ga := options{}
 	flag.StringVar(&ga.Package, "package", os.Getenv("GOPACKAGE"), "package name in generated file (default to GOPACKAGE)")
 	flag.StringVar(&ga.Interface, "interface", "", "name of the interface that encompass all types")
 	flag.StringVar(&ga.Typed, "typed", "", "name of struct that will used for typed "+
@@ -110,7 +91,7 @@ func parseArguments() (*GeneratorArgs, error) {
 	return &ga, nil
 }
 
-func checkArgs(args *GeneratorArgs) error {
+func checkArgs(args *options) error {
 	if args.Package == "" {
 		return errors.New("package name should not be empty")
 	}
@@ -124,5 +105,5 @@ func checkArgs(args *GeneratorArgs) error {
 
 func exitf(format string, args ...interface{}) {
 	_, _ = fmt.Fprintf(os.Stderr, format, args...) // nolint: errcheck
-	os.Exit(ExitCodeError)
+	os.Exit(1)
 }

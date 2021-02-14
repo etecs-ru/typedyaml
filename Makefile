@@ -22,7 +22,7 @@ format: tools/gofumpt tools/gofumports ## format the package
 	@./tools/bin/gofumports -w .
 	@echo formatted
 
-lint: .golangci-lint.yml tools/golangci-lint ## lint the package
+lint: .golangci.yml tools/golangci-lint ## lint the package
 	@./tools/bin/golangci-lint run ./...
 	@echo lint passed
 
@@ -46,16 +46,16 @@ help:
 
 tools/golangci-lint:
 tools/golangci-lint: tools/go.mod tools/go.sum
-	@cd tools && go build -o ./tools/bin/golangci-lint \
+	@cd tools && go build -o ./bin/golangci-lint \
 		-ldflags "-s -w" github.com/golangci/golangci-lint/cmd/golangci-lint
 
 tools/gofumpt:
 tools/gofumpt: tools/go.mod tools/go.sum
-	cd tools && go build -o ./tools/bin/gofumpt -ldflags "-s -w" mvdan.cc/gofumpt
+	cd tools && go build -o ./bin/gofumpt -ldflags "-s -w" mvdan.cc/gofumpt
 
 tools/gofumports:
 tools/gofumports: tools/go.mod tools/go.sum
-	cd tools && go build -o ./tools/bin/gofumports -ldflags "-s -w" mvdan.cc/gofumpt/gofumports
+	cd tools && go build -o ./bin/gofumports -ldflags "-s -w" mvdan.cc/gofumpt/gofumports
 
 go.mod: FORCE
 	go mod tidy
