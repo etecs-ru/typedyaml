@@ -15,7 +15,6 @@ func generateCode(genArgs *GeneratorArgs, out io.Writer) error {
 		}).
 		Parse(tmplRaw))
 	err := tmpl.Execute(out, genArgs)
-
 	if err != nil {
 		return err
 	}
