@@ -1,8 +1,6 @@
 # typedyaml
 
-A lightweight code generator for Go based on [github.com/etecs-ru/typedjson](https://github.com/etecs-ru/typedjson). Alleviates YAML marshalling/unmarshalling unrelated structs in typed fashion.
-
-It depends on [github.com/goccy/go-yaml](https://github.com/goccy/go-yaml) allowing such benefits as [fields validation](https://github.com/goccy/go-yaml/blob/868d322819b933bce2a46cfa2951c08706600f14/validate_test.go#L75).
+A lightweight code generator for Go alleviates YAML marshalling/unmarshalling unrelated structs in typed fashion. Depends on [github.com/goccy/go-yaml](https://github.com/goccy/go-yaml) allowing such benefits as [fields validation](https://github.com/goccy/go-yaml/blob/868d322819b933bce2a46cfa2951c08706600f14/validate_test.go#L75).
 
 ## Badges
 
@@ -120,39 +118,39 @@ tags:
 gateway:
   type: UserGateway
   value:
-	enabled: false
-	host: internal-users.microservice.lan
-	port: 8443
-	user: robot
-	security_descriptor: SY
+    enabled: false
+    host: internal-users.microservice.lan
+    port: 8443
+    user: robot
+    security_descriptor: SY
 gateways:
 - type: UserGateway
   value:
-	enabled: true
-	host: external-users.microservice.lan
-	port: 8443
-	user: robot
-	security_descriptor: SY
+    enabled: true
+    host: external-users.microservice.lan
+    port: 8443
+    user: robot
+    security_descriptor: SY
 - type: OrdersGateway
   value:
-	enabled: true
-	kafka:
-	  hosts:
-	  - host-a:7891
-	  - host-b:7892
-	  topics:
-	  - topic-a
-	  - topic-b
-	  - topic-c
-	  group_id: gid01
-	  client_id: cid01
-	  connect_backoff: 1000000000
-	  consume_backoff: 1000000000
-	  wait_close: 1000000000
-	  max_wait_time: 1000000000
-	  isolation_level: 0
-	  username: user
-	  password: password
+    enabled: true
+    kafka:
+      hosts:
+	    - host-a:7891
+	    - host-b:7892
+      topics:
+        - topic-a
+        - topic-b
+        - topic-c
+      group_id: gid01
+      client_id: cid01
+      connect_backoff: 1000000000
+      consume_backoff: 1000000000
+      wait_close: 1000000000
+      max_wait_time: 1000000000
+      isolation_level: 0
+      username: user
+      password: password
 ```
 
 
