@@ -1,7 +1,13 @@
 # typedyaml
 
+
+## Badges
+
+![Build Status](https://github.com/golangci/golangci-lint/workflows/CI/badge.svg)
 [![Go Reference](https://pkg.go.dev/badge/github.com/etecs-ru/typedyaml.svg)](https://pkg.go.dev/github.com/etecs-ru/typedyaml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/etecs-ru/typedyaml)](https://goreportcard.com/report/github.com/etecs-ru/typedyaml)
+[![codecov](https://codecov.io/gh/etecs-ru/typedyaml/branch/master/graph/badge.svg)](https://codecov.io/gh/etecs-ru/typedyaml)
+[![License](https://img.shields.io/github/license/etecs-ru/typedyaml)](/LICENSE)
 
 This is a code generator for Go based on [github.com/etecs-ru/typedjson](https://github.com/etecs-ru/typedjson) that alleviates YAML marshaling/unmarshalling unrelated structs in typed fashion.
 
@@ -189,3 +195,12 @@ func WriteMicroserviceConfigToFile(cfg MicroserviceConfig, path string) error {
 }
 
 ```
+
+## Contributing
+
+Bug reports, test cases, and code contributions are more than welcome.
+Please refer to the [contribution guidelines](./CONTRIBUTING.md).
+
+## License
+
+MIT License
