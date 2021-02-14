@@ -136,8 +136,8 @@ gateways:
     enabled: true
     kafka:
       hosts:
-	    - host-a:7891
-	    - host-b:7892
+        - host-a:7891
+        - host-b:7892
       topics:
         - topic-a
         - topic-b
