@@ -1,6 +1,6 @@
 # typedyaml
 
-A lightweight code generator for Go based on [github.com/etecs-ru/typedjson](https://github.com/etecs-ru/typedjson). Alleviates YAML marshaling/unmarshalling unrelated structs in typed fashion.
+A lightweight code generator for Go based on [github.com/etecs-ru/typedjson](https://github.com/etecs-ru/typedjson). Alleviates YAML marshalling/unmarshalling unrelated structs in typed fashion.
 
 It depends on [github.com/goccy/go-yaml](https://github.com/goccy/go-yaml) allowing such benefits as [fields validation](https://github.com/goccy/go-yaml/blob/868d322819b933bce2a46cfa2951c08706600f14/validate_test.go#L75).
 
@@ -12,14 +12,14 @@ It depends on [github.com/goccy/go-yaml](https://github.com/goccy/go-yaml) allow
 [![codecov](https://codecov.io/gh/etecs-ru/typedyaml/branch/master/graph/badge.svg)](https://codecov.io/gh/etecs-ru/typedyaml)
 [![License](https://img.shields.io/github/license/etecs-ru/typedyaml)](/LICENSE)
 
-Imagine, that you need to configure several instances of some service, each of different kind
+Imagine, that you need to configure several instances of some service, each of a different kind
 using a YAML object with some key `Config`. 
 The value of this field can correspond to two structs of your Go program: `FooConfig` and `BarConfig`.
 So, the field `Config` in your struct must be able to hold a value of two possible types.
 In this case, you have the following options:
 
 1. You can declare field `Config` as `interface{}` and somehow determine what type you should expect, assign an object of this type to `Config` 
-and then unmarshal object.
+and then unmarshal an object.
 1. You can unmarshal field `Config` separately.
 1. You can implement custom `MarshalYAML`/`UnmarshalYAML` for the third type that automatically will handle these cases.
 
@@ -35,7 +35,7 @@ Options:
 
 * `-interface` string
 
-	Name of the interface that encompass all types.
+	Name of the interface that encompasses all types.
 
 * `-output` string
 
@@ -43,7 +43,7 @@ Options:
 
 * `-package` string
 
-	Package name in generated file (default to GOPACKAGE).
+	The package name in the generated file (default to GOPACKAGE).
 
 * `-typed` string
 
@@ -93,7 +93,7 @@ type KafkaConfiguration struct {
 }
 ```
 
-So you need to group this pieces together in some `MicroserviceConfig` structure and want to read it from YAML file.
+So you need to group these pieces together in some `MicroserviceConfig` structure and want to read it from YAML file.
 
 We propose to implement polymorphic type `Gateway` using this code generation tool.
 
