@@ -1,5 +1,8 @@
 # typedyaml
 
+A lightweight code generator for Go based on [github.com/etecs-ru/typedjson](https://github.com/etecs-ru/typedjson). Alleviates YAML marshaling/unmarshalling unrelated structs in typed fashion.
+
+It depends on [github.com/goccy/go-yaml](https://github.com/goccy/go-yaml) allowing such benefits as [fields validation](https://github.com/goccy/go-yaml/blob/868d322819b933bce2a46cfa2951c08706600f14/validate_test.go#L75).
 
 ## Badges
 
@@ -8,10 +11,6 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/etecs-ru/typedyaml)](https://goreportcard.com/report/github.com/etecs-ru/typedyaml)
 [![codecov](https://codecov.io/gh/etecs-ru/typedyaml/branch/master/graph/badge.svg)](https://codecov.io/gh/etecs-ru/typedyaml)
 [![License](https://img.shields.io/github/license/etecs-ru/typedyaml)](/LICENSE)
-
-This is a code generator for Go based on [github.com/etecs-ru/typedjson](https://github.com/etecs-ru/typedjson) that alleviates YAML marshaling/unmarshalling unrelated structs in typed fashion.
-
-Tool depends on [github.com/goccy/go-yaml](https://github.com/goccy/go-yaml) allowing such benefits as [fields validation](https://github.com/goccy/go-yaml/blob/868d322819b933bce2a46cfa2951c08706600f14/validate_test.go#L75).
 
 Imagine, that you need to configure several instances of some service, each of different kind
 using a YAML object with some key `Config`. 
