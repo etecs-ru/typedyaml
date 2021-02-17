@@ -11,4 +11,5 @@ jobs:
       - name: Bump version and push tag
         uses: mathieudutour/github-tag-action@v5.1
         with:
+          default_bump: false 
           github_token: ${{ secrets.GITHUB_TOKEN }}
