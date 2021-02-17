@@ -1,5 +1,7 @@
 # typedyaml
 
+<img align="right" src="https://i.ibb.co/qxTM0sP/Gopher-puzzled.png">
+
 A lightweight code generator for Go alleviates YAML marshalling/unmarshalling unrelated structs in typed fashion. Depends on [github.com/goccy/go-yaml](https://github.com/goccy/go-yaml) allowing such benefits as [fields validation](https://github.com/goccy/go-yaml/blob/868d322819b933bce2a46cfa2951c08706600f14/validate_test.go#L75).
 
 ## Badges
@@ -56,14 +58,14 @@ See code in the [/example](https://github.com/etecs-ru/typedyaml/tree/master/exa
 
 For example, you have some microservice that serves orders to users and use gateways to other microservices that provides it. You need to configure it in one YAML file in a smart way.
 
-You define `UserGateway` and `OrdersGateway` structures in our Go code, like:
+You define `UsersGateway` and `OrdersGateway` structures in our Go code, like:
 
 ```go
 package config
 
 import "time"
 
-type UserGateway struct {
+type UsersGateway struct {
 	Enabled            bool   `yaml:"enabled"`
 	Host               string `yaml:"host"`
 	Port               int    `yaml:"port"`
@@ -102,13 +104,13 @@ Let's see:
 ```go
 package config 
 
-//go:generate go run github.com/etecs-ru/typedyaml -package config -interface Gateway UserGateway OrdersGateway
+//go:generate go run github.com/etecs-ru/typedyaml -package config -interface Gateway users=UsersGateway orders=OrdersGateway
 type Gateway interface {
 	TypedYAML(*GatewayTyped) string
 }
 ```
 Now, run `go generate`.
-Generated struct `ConfigTyped` will have special implemented methods `MarshalYAML`/`UnmarshalYAML`. `GatewayTyped` could be used as a single instance, or in a slice. Adding configuration for new gateways now working like a charm -- just add its type to code generation argument and regenerate the code.
+Generated struct `GatewayTyped` will have special implemented methods `MarshalYAML`/`UnmarshalYAML`. `GatewayTyped` could be used as a single instance, or in a slice. Adding configuration for new gateways now working like a charm -- just add its type to code generation argument and regenerate the code.
 
 Let us write some configuration example:
 
@@ -116,7 +118,7 @@ Let us write some configuration example:
 tags:
   key: value
 gateway:
-  type: UserGateway
+  type: users
   value:
     enabled: false
     host: internal-users.microservice.lan
@@ -124,14 +126,14 @@ gateway:
     user: robot
     security_descriptor: SY
 gateways:
-- type: UserGateway
+- type: users
   value:
     enabled: true
     host: external-users.microservice.lan
     port: 8443
     user: robot
     security_descriptor: SY
-- type: OrdersGateway
+- type: orders
   value:
     enabled: true
     kafka:
